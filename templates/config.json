@@ -1,0 +1,16 @@
+{
+    "params":{
+        "mongoclient":"mongodb://localhost:27017/",
+        "yt_url":"https://youtube.com/channel/UC8J8qoH-eRIUQWoB-Epks-Q",
+        "fb_url":"",
+        "form_url":"",
+        "blog_url":"https://kmecbee.blogspot.com/2022/07/transformers-is-used-in-power.html",
+        "contact_username":"ronit",
+        "contact_password":"beekmec",
+        "contact_email":"ahujaronit321@gmail.com",
+        "virtual_lab_ac":"https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_en.html",
+        "virtual_lab_dc":"https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/latest/circuit-construction-kit-dc-virtual-lab_en.html",
+        "virtual_lab_machines":"https://ems-iitr.vlabs.ac.in/List%20of%20experiments.html",
+        "exp_by_students":"https://beexperiments.blogspot.com/"
+    }
+}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('static/assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Teachers Dashboard</h1>
+                            <span class="subheading">Help students by clearing their doubts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <table class="table" >
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Enrollment number</th>
+                            <th>Phone number</th>
+                            <th>Message</th>
+                            <th>Date and time</th>
+                            <!-- <th>Delete</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for contact in contacts %}
+                          <tr>
+                            <td>{{contact['name']}}</td>
+                            <td>{{contact['enrollment number']}}</td>
+                            <td>{{contact['phone number']}}</td>
+                            <td>{{contact['message']}}</td>
+                            <td >{{contact['date and time']}}</td>
+                          </tr>
+                          {% endfor %}
+
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+          
+          

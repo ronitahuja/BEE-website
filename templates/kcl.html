@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url(https://3.imimg.com/data3/UK/AF/MY-10686729/kcl-kvl-trainer.jpg)">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>KIRCHOFF'S CURRENT LAW</h1>
+                            <p>Gustav Kirchhoff’s Current Law is one of the fundamental laws used for circuit analysis. His current law states that for a parallel path the total current entering a circuits junction is exactly equal to the total current leaving the same junction. This is because it has no other place to go as no charge is lost.
+                              In other words the algebraic sum of ALL the currents entering and leaving a junction must be equal to zero as: Σ IIN = Σ IOUT.This idea by Kirchhoff is commonly known as the Conservation of Charge, as the current is conserved around the junction with no loss of current. </p>
+                            <button class="btn-primary" onclick="kclfun()">test</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main>
+                        <div class="my-5" >
+                            <div class="container px-4 px-lg-5">
+                                <div class="row gx-4 gx-lg-5 justify-content-center">
+                                    <div class="col-md-10 col-lg-8 col-xl-7">
+                                        <!-- <var id="x">x</var> -->
+                                        <table class="table" >
+                                            <thead>
+                                              <tr>
+                                                <th >source-voltage</th>
+                                                <th>voltage</th>
+                                                <th>Theory</th>
+                                                <th>Practical</th>
+                                                <th>result</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td id="sv1"></td>
+                                                <td id="current1"></td>
+                                                <td id="theory1"></td>
+                                                <td id="practical1"></td>
+                                                <td id="result1"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv2"></td>
+                                                <td id="current2"></td>
+                                                <td id="theory2"></td>
+                                                <td id="practical2"></td>
+                                                <td id="result2"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv3"></td>
+                                                <td id="current3"></td>
+                                                <td id="theory3"></td>
+                                                <td id="practical3"></td>
+                                                <td id="result3"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv4"></td>
+                                                <td id="curent4"></td>
+                                                <td id="theory4"></td>
+                                                <td id="practical4"></td>
+                                                <td id="result4"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv5"></td>
+                                                <td id="current5"></td>
+                                                <td id="theory5"></td>
+                                                <td id="practical5"></td>
+                                                <td id="result5"></td>
+                                              </tr>
+                                              
+                                            </tbody>
+                                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+           <script>
+            let parllel=(l,a)=>{
+              req=0
+            for(let i=0;i<l.length;i++){
+                if (i==a-1){
+                  i++
+                }
+                else{
+                  req=req+(1/l[i])
+                }
+            }
+            return 1/req
+            }
+            
+            let kclfun=()=>{
+            let resistances=[]
+            let sum =0;
+            let test=parseInt(prompt("ENTER TOTAL NUMBER OF RESISTORS"));
+            let current_theory = []
+            let current_practical=[]
+            for(let i=1;i<=test;i++){
+                resistances[i-1]=parseFloat(prompt(`ENTER THE RESISTANCE OF R(${i}) IN OHM: `));
+            } 
+            let v_source=parseFloat(prompt("ENTER SOURCE VOLTAGE IN VOLTS"));
+            let i_total=((v_source/parllel(resistances,-1))*1000);
+            for(let i=1;i<=test;i++){
+                current_theory[i-1]=(i_total*parllel(resistances,i))/(resistances[i-1]+parllel(resistances,i))
+            }
+            for(let i=1;i<=test;i++){
+                current_practical[i-1]=parseFloat(prompt(`ENTER CURRENT READING THROUGH R(${i}) IN MILLI AMPERE:`));
+        }
+        for(let i=1;i<=test;i++){
+            document.getElementById(`sv${i}`).innerHTML=v_source
+            document.getElementById(`theory${i}`).innerHTML=current_theory[i-1]
+            document.getElementById(`current${i}`).innerHTML=`I(${i})`
+            document.getElementById(`practical${i}`).innerHTML=current_practical[i-1]
+            if(Math.abs(parseFloat(current_theory[i-1]-current_practical[i-1]))<=0.5){
+                document.getElementById(`result${i}`).innerHTML="KCL verified"
+            }
+            else{
+                document.getElementById(`result${i}`).innerHTML="KCL is not verified"
+            }
+        }
+    }
+        </script>
+      
+{% endblock %}

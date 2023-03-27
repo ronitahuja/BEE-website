@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url(https://3.imimg.com/data3/UK/AF/MY-10686729/kcl-kvl-trainer.jpg)">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>KIRCHOFF'S VOLTAGE LAW</h1>
+                            <p>Gustav Kirchhoff’s Voltage Law is the second of his fundamental laws we can use for circuit analysis. His voltage law states that for a closed loop series path the algebraic sum of all the voltages around any closed loop in a circuit is equal to zero. This is because a circuit loop is a closed conducting path so no energy is lost.
+                                In other words the algebraic sum of ALL the potential differences around the loop must be equal to zero as: ΣV = 0. Note here that the term “algebraic sum” means to take into account the polarities and signs of the sources and voltage drops around the loop.
+                                This idea by Kirchhoff is commonly known as the Conservation of Energy, as moving around a closed loop, or circuit, you will end up back to where you started in the circuit and therefore back to the same initial potential with no loss of voltage around the loop. Hence any voltage drops around the loop must be equal to any voltage sources met along the way.</p>
+                            <button class="btn-primary" onclick="kvlfun()">test</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main>
+                        <div class="my-5" >
+                            <div class="container px-4 px-lg-5">
+                                <div class="row gx-4 gx-lg-5 justify-content-center">
+                                    <div class="col-md-10 col-lg-8 col-xl-7">
+                                        <!-- <var id="x">x</var> -->
+                                        <table class="table" >
+                                            <thead>
+                                              <tr>
+                                                <th >source-voltage</th>
+                                                <th>voltage</th>
+                                                <th>Theory</th>
+                                                <th>Practical</th>
+                                                <th>result</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td id="sv1"></td>
+                                                <td id="voltage1"></td>
+                                                <td id="theory1"></td>
+                                                <td id="practical1"></td>
+                                                <td id="result1"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv2"></td>
+                                                <td id="voltage2"></td>
+                                                <td id="theory2"></td>
+                                                <td id="practical2"></td>
+                                                <td id="result2"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv3"></td>
+                                                <td id="voltage3"></td>
+                                                <td id="theory3"></td>
+                                                <td id="practical3"></td>
+                                                <td id="result3"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv4"></td>
+                                                <td id="voltage4"></td>
+                                                <td id="theory4"></td>
+                                                <td id="practical4"></td>
+                                                <td id="result4"></td>
+                                              </tr>
+                                              <tr>
+                                                <td id="sv5"></td>
+                                                <td id="voltage5"></td>
+                                                <td id="theory5"></td>
+                                                <td id="practical5"></td>
+                                                <td id="result5"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+           <script>
+            let kvlfun=()=>{
+            let resistances=[]
+            let req=0;
+            let count =0;
+            let test=parseInt(prompt("ENTER TOTAL NUMBER OF RESISTORS"));
+            let voltages_theory = []
+            let voltages_practical=[]
+            for(let i=1;i<=test;i++){
+                resistances[i-1]=parseFloat(prompt(`ENTER THE RESISTANCE OF R(${i}) IN OHM: `));
+                req=req+resistances[i-1];
+            } 
+            let v_source=parseFloat(prompt("ENTER SOURCE VOLTAGE IN VOLTS"));
+            let i_total=v_source/req;
+            for(let i=1;i<=test;i++){
+                voltages_theory[i-1]=(v_source*resistances[i-1])/req;
+            }
+            for(let i=1;i<=test;i++){
+                voltages_practical[i-1]=parseFloat(prompt(`ENTER VOLTMETER READING ACCROSS R(${i}) IN VOLT:`));
+        }
+        for(let i=1;i<=test;i++){
+            document.getElementById(`sv${i}`).innerHTML=v_source
+            document.getElementById(`theory${i}`).innerHTML=voltages_theory[i-1]
+            document.getElementById(`voltage${i}`).innerHTML=`V(${i})`
+            document.getElementById(`practical${i}`).innerHTML=voltages_practical[i-1]
+            if(Math.abs(parseFloat(voltages_theory[i-1]-voltages_practical[i-1]))<=0.5){
+                document.getElementById(`result${i}`).innerHTML="KVL verified"
+            }
+            else{
+                document.getElementById(`result${i}`).innerHTML="KVL is not verified"
+            }
+        }
+    }
+        </script>
+      
+{% endblock %}
