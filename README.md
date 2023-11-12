@@ -19,3 +19,8 @@ run main.py file
 
 This project is used by college students. Link to the website is http://bee123.pythonanywhere.com/
 
+
+## Authors
+
+- [@ronitahuja](https://www.github.com/ronitahuja)
+
